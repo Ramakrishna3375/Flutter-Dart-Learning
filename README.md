@@ -7,7 +7,7 @@
 3. Functions in Dart
 4. Collections in Dart
 5. File Handling in Dart
-
+6.OOP in Dart
 ---
 
 ## 1. Introduction and Basics
@@ -1127,7 +1127,6 @@ Do-While loop with an initially false condition (will run once):
 
 Loop demonstration complete.
 ```
-
 ---
 
 ### Example 15: Using break and continue statements example 
@@ -1376,4 +1375,754 @@ New start!---END---
 
 --- File Handling Example Completed ---
 ```
+---
+## OOP In Dart
+Object-oriented programming (OOP) is a programming method that uses objects and their interactions to design and program applications. It is one of the most popular programming paradigms and is used in many programming languages, such as Dart, Java, C++, Python, etc.
+
+In OOP, an object can be anything, such as a person, a bank account, a car, or a house. Each object has its attributes (or properties) and behavior (or methods). For example, a person object may have the attributes name, age and height, and the behavior walk and talk.
+
+### Advantages
+It is easy to understand and use.
+It increases reusability and decreases complexity.
+The productivity of programmers increases.
+It makes the code easier to maintain, modify and debug.
+It promotes teamwork and collaboration.
+It reduces the repetition of code.
+
+#### Features Of OOP
+1.Class
+2.Object
+3.Encapsulation
+4.Inheritance
+5.Polymorphism
+6.Abstraction
+---
+
+### Example 17: Find Simple Interest Using Class and Objects.
+```dart
+class SimpleInterest{
+  //properties of simple interest
+  double? principal;
+  double? rate;
+  double? time;
+  
+  //functions of simple interest
+  double interest(){
+    return (principal! * rate! * time!)/100;
+  }
+}
+void main(){
+  //object of simple interest created
+  SimpleInterest simpleInterest = SimpleInterest();
+  
+  //setting properties for simple interest
+  simpleInterest.principal=1000;
+  simpleInterest.rate=10;
+  simpleInterest.time=2;
+  
+  //functions of simple interest called
+  print("Simple Interest is ${simpleInterest.interest()}.");
+}
+```
+**Output:**
+```
+Simple Interest is 200.
+```
+---
+### Example 18:How To Declare Constructor In Dart
+```dart
+class Student {
+  String? name;
+  int? age;
+  int? rollNumber;
+
+  // Constructor
+  Student(String name, int age, int rollNumber) {
+    print(
+        "Constructor called"); // this is for checking the constructor is called or not.
+    this.name = name;
+    this.age = age;
+    this.rollNumber = rollNumber;
+  }
+}
+
+void main() {
+  // Here student is object of class Student.
+  Student student = Student("John", 20, 1);
+  print("Name: ${student.name}");
+  print("Age: ${student.age}");
+  print("Roll Number: ${student.rollNumber}");
+}
+```
+**Output:**
+```
+Constructor called
+Name: John
+Age: 20
+Roll Number: 1
+```
+---
+### Example 19:-Named Constructor In Dart
+```dart
+class Student {
+  String? name;
+  int? age;
+  int? rollNumber;
+
+  // Default Constructor
+  Student() {
+    print("This is a default constructor");
+  }
+
+  // Named Constructor
+  Student.namedConstructor(String name, int age, int rollNumber) {
+    this.name = name;
+    this.age = age;
+    this.rollNumber = rollNumber;
+  }
+}
+
+void main() {
+  // Here student is object of class Student.
+  Student student = Student.namedConstructor("John", 20, 1);
+  print("Name: ${student.name}");
+  print("Age: ${student.age}");
+  print("Roll Number: ${student.rollNumber}");
+}
+```
+**Output:**
+```
+This is a default constructor
+Name: John
+Age: 20
+Roll Number: 1
+```
+---
+### Example 20:-Constant Constructor In Dart
+```dart
+class Student {
+  final String? name;
+  final int? age;
+  final int? rollNumber;
+
+  // Constant Constructor
+  const Student({this.name, this.age, this.rollNumber});
+}
+
+void main() {
+  // Here student is object of Student.
+  const Student student = Student(name: "John", age: 20, rollNumber: 1);
+  print("Name: ${student.name}");
+  print("Age: ${student.age}");
+  print("Roll Number: ${student.rollNumber}");
+}
+```
+**output:**
+```
+Name: John
+Age: 20
+Roll Number: 1
+```
+---
+## Encapsulation In Dart
+In Dart, Encapsulation means hiding data within a library, preventing it from outside factors. It helps you control your program and prevent it from becoming too complicated.
+---
+### Example 21:- Encapsulation In Dart using Getter method and Setter method 
+```dart
+class Employee {
+  // Private properties
+  int? _id;
+  String? _name;
+
+// Getter method to access private property _id
+  int getId() {
+    return _id!;
+  }
+// Getter method to access private property _name
+  String getName() {
+    return _name!;
+  }
+// Setter method to update private property _id
+  void setId(int id) {
+    this._id = id;
+  }
+// Setter method to update private property _name
+  void setName(String name) {
+    this._name = name;
+  }
+  
+}
+
+void main() {
+  // Create an object of Employee class
+  Employee emp = new Employee();
+  // setting values to the object using setter
+  emp.setId(1);
+  emp.setName("John");
+
+  // Retrieve the values of the object using getter
+  print("Id: ${emp.getId()}");
+  print("Name: ${emp.getName()}");
+}
+```
+**output:**
+```
+Id: 1
+Name: John
+```
+---
+## Getter In Dart
+Getter is used to get the value of a property. It is mostly used to access a private property’s value. Getter provide explicit read access to an object properties.
+---
+### Example 22:-Getter In Dart With Data Validation
+```dart
+class NoteBook {
+  // Private properties
+  String _name;
+  double _prize;
+
+  // Constructor
+  NoteBook(this._name, this._prize);
+
+  // Getter to access private property _name
+  String get name {
+    if (_name == "") {
+      return "No Name";
+    }
+    return this._name;
+  }
+
+  // Getter to access private property _prize
+  double get price {
+    return this._prize;
+  }
+}
+
+void main() {
+  // Create an object of NoteBook class
+  NoteBook nb = new NoteBook("Apple", 1000);
+  print("First Notebook name: ${nb.name}");
+  print("First Notebook price: ${nb.price}");
+  NoteBook nb2 = new NoteBook("", 500);
+  print("Second Notebook name: ${nb2.name}");
+  print("Second Notebook price: ${nb2.price}");
+}
+```
+**output:**
+```
+First Notebook name: Apple
+First Notebook price: 1000.0
+Second Notebook name: No Name
+Second Notebook price: 500.0
+```
+---
+### Setter In Dart
+Setter is used to set the value of a property. It is mostly used to update a private property’s value. Setter provide explicit write access to an object properties.
+---
+### Example 23:-Setter In Dart
+```dart
+class Student {
+  // Private properties
+  String? _name;
+  int? _classnumber;
+
+  // Setter to update the value of name property
+  set name(String name) => this._name = name;
+
+  // Setter to update the value of classnumber property
+  set classnumber(int classnumber) {
+    if (classnumber <= 0 || classnumber > 12) {
+      throw ('Classnumber must be between 1 and 12');
+    }
+    this._classnumber = classnumber;
+  }
+
+  // Method to display the values of the properties
+  void display() {
+    print("Name: $_name");
+    print("Class Number: $_classnumber");
+  }
+}
+void main() {
+  // Create an object of Student class
+  Student s = new Student();
+  // setting values to the object using setter
+  s.name = "John Doe";
+  s.classnumber = 12;
+
+  // Display the values of the object
+  s.display();
+
+  // This will generate error
+  //s.setClassNumber(13);
+}
+```
+**output:**
+```
+Name: John
+Class Number: 10
+```
+---
+## Getter And Setter
+Getter and Setter provide explicit read and write access to an object properties. In dart, get and set are the keywords used to create getter and setter. Getter read the value of property and act as accessor. Setter update the value of property and act as mutator.
+---
+### Example 24:-In this example below, there is a class named Student with three private properties _firstName, _lastName and _age. There are two getters fullName and age to get the value of the properties. There are also three setters firstName, lastName and age to update the value of the properties. If age is less than 0, it will throw an error.
+```dart
+class Student {
+  // Private Properties
+  String? _firstName;
+  String? _lastName;
+  int? _age;
+
+  // Getter to get full name
+  String get fullName => this._firstName! + " " + this._lastName!;
+
+  // Getter to read private property _age
+  int get age => this._age!;
+
+  // Setter to update private property _firstName
+  set firstName(String firstName) => this._firstName = firstName;
+
+  // Setter to update private property _lastName
+  set lastName(String lastName) => this._lastName = lastName;
+
+  // Setter to update private property _age
+  set age(int age) {
+    if (age < 0) {
+      throw new Exception("Age can't be less than 0");
+    }
+    this._age = age;
+  }
+}
+
+void main() {
+  // Create an object of Student class
+  Student st = new Student();
+  // setting values to the object using setter
+  st.firstName = "John";
+  st.lastName = "Doe";
+  st.age = 20;
+  // Display the values of the object
+  print("Full Name: ${st.fullName}");
+  print("Age: ${st.age}");
+}
+```
+**output:**
+```
+Full Name: John Doe
+Age: 20
+```
+---
+## Inheritance In Dart
+Inheritance is a sharing of behaviour between two classes. It allows you to define a class that extends the functionality of another class. The extend keyword is used for inheriting from parent class.
+---
+### Example 25:-In this example, here is parent class Car and child class Toyota. The Toyota class inherits the properties and methods of the Car class.
+```dart
+class Car{
+  String color;
+  int year;
+
+  void start(){
+    print("Car started");
+  }  
+}
+
+class Toyota extends Car{
+  String model;
+  int price;
+
+  void showDetails(){
+    print("Model: $model");
+    print("Price: $price");
+  }
+}
+
+void main(){
+  var toyota = Toyota();
+  toyota.color = "Red";
+  toyota.year = 2020;
+  toyota.model = "Camry";
+  toyota.price = 20000;
+  toyota.start();
+  toyota.showDetails();
+}
+```
+**output:**
+```
+Car started
+Model: Camry
+Price: 20000
+```
+---
+## Super in Dart
+Super is used to refer to the parent class. It is used to call the parent class’s properties and methods.
+---
+### Example 26:-In this example below, the Manager class constructor calls the Employee class constructor using the super keyword.
+```dart
+class Employee {
+  // Constructor
+  Employee(String name, double salary) {
+    print("Employee constructor");
+    print("Name: $name");
+    print("Salary: $salary");
+  }
+}
+
+class Manager extends Employee {
+  // Constructor
+  Manager(String name, double salary) : super(name, salary) {
+    print("Manager constructor");
+  }
+}
+
+void main() {
+  Manager manager = Manager("John", 25000.0);
+}
+```
+**output:**
+```
+Employee constructor
+Name: John
+Salary: 25000.0
+Manager constructor
+```
+---
+## Polymorphism In Dart
+Poly means many and morph means forms. Polymorphism is the ability of an object to take on many forms. As humans, we have the ability to take on many forms. We can be a student, a teacher, a parent, a friend, and so on. Similarly, in object-oriented programming, polymorphism is the ability of an object to take on many forms.
+---
+### Example 27:-In this example below, there is a class named Employee with a method named salary(). The salary() method is overridden in two child classes named Manager and Developer.
+```dart
+class Employee{
+  void salary(){
+    print("Employee salary is \$1000.");
+  }
+}
+
+class Manager extends Employee{
+  @override
+  void salary(){
+    print("Manager salary is \$2000.");
+  }
+}
+
+class Developer extends Employee{
+  @override
+  void salary(){
+    print("Developer salary is \$3000.");
+  }
+}
+
+void main(){
+  Manager manager=Manager();
+  Developer developer=Developer();
+  
+  manager.salary();
+  developer.salary();
+}
+```
+**output:**
+```
+Manager salary is $2000.
+Developer salary is $3000.
+```
+---
+## Static In Dart
+If you want to define a variable or method that is shared by all instances of a class, you can use the static keyword. Static members are accessed using the class name. It is used for memory management.
+---
+### Example 28:-In this example below, there is a class named Student. The class has a static variable schoolName to store the name of the school. If every student belongs to the same school, then it is better to use a static variable.
+```dart
+class Student {
+  int id;
+  String name;
+  static String schoolName = "ABC School";
+  Student(this.id, this.name);
+  void display() {
+    print("Id: ${this.id}");
+    print("Name: ${this.name}");
+    print("School Name: ${Student.schoolName}");
+  }
+}
+
+void main() {
+  Student s1 = new Student(1, "John");
+  s1.display();
+  Student s2 = new Student(2, "Smith");
+  s2.display();
+}
+```
+**output:**
+```
+Id: 1
+Name: John
+School Name: ABC School
+Id: 2
+Name: Smith
+School Name: ABC School
+```
+---
+## Enum In Dart
+An enum is a special type that represents a fixed number of constant values. An enum is declared using the keyword enum followed by the enum’s name.
+---
+### Example 29:-In this example below, there is enum type named days. It contains seven constants days. The days enum type is used in the main() function.
+```dart
+enum days {
+  Sunday,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thrusday,
+  Friday,
+  Saturday
+}
+
+void main() {
+  var today = days.Friday;
+  switch (today) {
+    case days.Sunday:
+      print("Today is Sunday.");
+      break;
+    case days.Monday:
+      print("Today is Monday.");
+      break;
+    case days.Tuesday:
+      print("Today is Tuesday.");
+      break;
+    case days.Wednesday:
+      print("Today is Wednesday.");
+      break;
+    case days.Thursday:
+      print("Today is Thursday.");
+      break;
+    case days.Friday:
+      print("Today is Friday.");
+      break;
+    case days.Saturday:
+      print("Today is Saturday.");
+      break;
+  }
+}
+```
+**output:**
+```
+Today is Friday.
+```
+---
+## Abstract Class
+Abstract classes are classes that cannot be initialized. It is used to define the behavior of a class that can be inherited by other classes. An abstract class is declared using the keyword abstract.
+---
+### Example 30:-In this example below, there is an abstract class Vehicle with two abstract methods start() and stop(). The subclasses Car and Bike implement the abstract methods and override them to print the message.
+```dart
+abstract class Vehicle {
+  // Abstract method
+  void start();
+  // Abstract method
+  void stop();
+}
+
+class Car extends Vehicle {
+  // Implementation of start()
+  @override
+  void start() {
+    print('Car started');
+  }
+
+  // Implementation of stop()
+  @override
+  void stop() {
+    print('Car stopped');
+  }
+}
+
+class Bike extends Vehicle {
+  // Implementation of start()
+  @override
+  void start() {
+    print('Bike started');
+  }
+
+  // Implementation of stop()
+  @override
+  void stop() {
+    print('Bike stopped');
+  }
+}
+
+void main() {
+  Car car = Car();
+  car.start();
+  car.stop();
+
+  Bike bike = Bike();
+  bike.start();
+  bike.stop();
+}
+```
+**output:**
+```
+Car started
+Car stopped
+Bike started
+Bike stopped
+```
+---
+## Interface In Dart
+An interface defines a syntax that a class must follow. It is a contract that defines the capabilities of a class. It is used to achieve abstraction in the Dart programming language. When you implement an interface, you must implement all the properties and methods defined in the interface. Keyword implements is used to implement an interface.
+---
+### Example 31:-In this example below, two abstract classes are named Area and Perimeter. The Area class has an abstract method area() and the Perimeter class has an abstract method perimeter(). The Shape class implements both the Area and Perimeter classes. The Shape class has to implement the area() and perimeter() methods.
+```dart
+// abstract class as interface
+abstract class Area {
+  void area();
+}
+// abstract class as interface
+abstract class Perimeter {
+  void perimeter();
+}
+// implements multiple interfaces
+class Rectangle implements Area, Perimeter {
+    // properties
+  int length, breadth;
+
+ // constructor
+  Rectangle(this.length, this.breadth);
+
+// implementation of area()
+  @override
+  void area() {
+    print('The area of the rectangle is ${length * breadth}');
+  }
+// implementation of perimeter()
+  @override
+  void perimeter() {
+    print('The perimeter of the rectangle is ${2 * (length + breadth)}');
+  }
+}
+
+void main() {
+  Rectangle rectangle = Rectangle(10, 20);
+  rectangle.area();
+  rectangle.perimeter();
+}
+```
+**output:**
+```
+The area of the rectangle is 200
+The perimeter of the rectangle is 60
+```
+---
+Key Points To Remember
+An interface is a contract that defines the capabilities of a class.
+Dart has no keyword interface, but you can use class or abstract class to declare an interface.
+Use abstract class to declare an interface.
+A class can extend only one class but can implement multiple interfaces.
+Using the interface, you can achieve multiple inheritance in Dart.
+It is used to achieve abstraction.
+---
+## Mixin In Dart
+Mixins are a way of reusing the code in multiple classes. Mixins are declared using the keyword mixin followed by the mixin name. Three keywords are used while working with mixins: mixin, with, and on. It is possible to use multiple mixins in a class.
+---
+### Example 32:-In this example below, there are two mixins named CanFly and CanWalk. The CanFly mixin has a method fly() and the CanWalk mixin has a method walk(). The Bird class uses both the CanFly and CanWalk mixins. The Human class uses the CanWalk mixin.
+```dart
+mixin CanFly {
+  void fly() {
+    print('I can fly');
+  }
+}
+
+mixin CanWalk {
+  void walk() {
+    print('I can walk');
+  }
+}
+
+class Bird with CanFly, CanWalk {
+ 
+}
+
+class Human with CanWalk {
+ 
+}
+
+void main() {
+  var bird = Bird();
+  bird.fly();
+  bird.walk();
+
+  var human = Human();
+  human.walk();
+}
+```
+**output:**
+```
+I can fly
+I can walk
+I can walk
+```
+---
+## Factory Constructor In Dart
+A factory constructor gives more flexibility to create an object. Generative constructors only create an instance of the class. But, the factory constructor can return an instance of the class or even subclass. It is also used to return the cached instance of the class.
+---
+### Example 33:-In this example below, factory constructor is used to validate the input. If the input is valid, it will return a new class instance. If the input is invalid, then it will throw an exception.
+```dart
+class Area {
+  final int length;
+  final int breadth;
+  final int area;
+
+  // private constructor
+  const Area._internal(this.length, this.breadth) : area = length * breadth;
+
+  // Factory constructor
+  factory Area(int length, int breadth) {
+    if (length < 0 || breadth < 0) {
+      throw Exception("Length and breadth must be positive");
+    }
+    // redirect to private constructor
+    return Area._internal(length, breadth);
+  }
+}
+
+void main() {
+  // This works
+  Area area = Area(10, 20);
+  print("Area is: ${area.area}");
+
+  // notice that here is negative value
+  Area area2 = Area(-10, 20);
+  print("Area is: ${area2.area}");
+}
+```
+**Output:**
+```
+Area is: 200
+Unhandled exception:
+Exception: Length and breadth must be positive
+```
+---
+## Generics In Dart
+Generics is a way to create a class, or function that can work with different types of data (objects). If you look at the internal implementation of List class, it is a generic class. It can work with different data types like int, String, double, etc. For example, List<int> is a list of integers, List<String> is a list of strings, and List<double> is a list of double values.
+---
+### Example 34:-In this example below, you will learn to create a generic method with multiple parameters.
+```dart
+// Define generic method
+T genericMethod<T, U>(T value1, U value2) {
+  return value1;
+}
+
+void main() {
+  // call the generic method
+  print(genericMethod<int, String>(10, "Hello"));
+  print(genericMethod<String, int>("Hello", 10));
+}
+```
+**Output:**
+```
+10
+Hello
+```
+---
+
+
+
+
 
