@@ -1,46 +1,55 @@
-LEARN DART
-===========
-Content
-========
-1.Introduction and Basics
-2.Conditions and Loops
-3.Functions in Dart
-4.Collections in Dart
-5.File Handling in Dart
+# LEARN DART
 
-1.Introduction and Basics
-===========================
-Dart
-Dart is a client-optimized, object-oriented, modern programming language to build apps fast for many platforms like android, iOS, web, desktop, etc. Client optimized means optimized for crafting a beautiful user interface and high-quality experiences. Google developed Dart as a programming language.
+## Content
+
+1. Introduction and Basics
+2. Conditions and Loops
+3. Functions in Dart
+4. Collections in Dart
+5. File Handling in Dart
+
+---
+
+## 1. Introduction and Basics
+
+Dart is a client-optimized, object-oriented, modern programming language to build apps fast for many platforms like Android, iOS, web, desktop, etc.
 
 Currently, Dart is one of the most preferred languages to learn. A solid understanding of Dart is necessary to develop high-quality apps with flutter. According to Github, Dart is one of the most loved programming languages in the world.
 
-If you know languages like C, Java, C#, Javascript, etc. Dart will be easy for you. This tutorial covers Dart from basic to advance.
-Dart Features
-=============
-Free and open-source.
-Object-oriented programming language.
-Used to develop android, iOS, web, and desktop apps fast.
-Can compile to either native code or javascript.
-Offers modern programming features like null safety and asynchronous programming.
-You can even use Dart for servers and backend.
+If you know languages like C, Java, C#, Javascript, etc., Dart will be easy for you. This tutorial covers Dart from basic to advance.
 
-Difference Between Dart & Flutter
-==================================
-Dart is a client optimized, object-oriented programming language. It is popular nowadays because of flutter. It is difficult to build complete apps only using Dart because you have to manage many things yourself.
+### Dart Features
+- Free and open-source.
+- Object-oriented programming language.
+- Used to develop Android, iOS, web, and desktop apps fast.
+- Can compile to either native code or javascript.
+- Offers modern programming features like null safety and asynchronous programming.
+- You can even use Dart for servers and backend.
 
-Flutter is a framework that uses dart programming language. With the help of flutter, you can build apps for android, iOS, web, desktop, etc. The framework contains ready-made tools to make apps faster.
+---
 
-About dart concepts examples
-===============================
-Example 1:- Using for loop condition for repeated print statement.
-sample code
+## Difference Between Dart & Flutter
+
+- Dart is a client optimized, object-oriented programming language. It is popular nowadays because of Flutter. It is difficult to build complete apps only using Dart because you have to manage many things yourself.
+- Flutter is a framework that uses the Dart programming language. With the help of Flutter, you can build apps for Android, iOS, web, desktop, etc. The framework contains ready-made tools to make apps faster.
+
+---
+
+## Dart Concepts Examples
+
+### Example 1: Using for loop condition for repeated print statement
+
+```dart
 void main() {
   for (var i = 0; i < 10; i++) {
-    print('hello ${i + 1}');
+    print('hello \\${i + 1}');
   }
 }
-output:- hello 1
+```
+
+**Output:**
+```
+hello 1
 hello 2
 hello 3
 hello 4
@@ -51,46 +60,67 @@ hello 8
 hello 9
 hello 10
 using for loop got print statement as repeatedly for 10 times as limit given in for loop condition.
-====================================================================================================
-Example 2:-Getting 20th fibonacci number.
+```
+
+---
+
+### Example 2: Getting 20th fibonacci number
+
+```dart
 void main() {
   const i = 20;
-
-  print('fibonacci($i) = ${fibonacci(i)}');
+  print('fibonacci(\$i) = \\${fibonacci(i)}');
 }
 
 /// Computes the nth Fibonacci number.
 int fibonacci(int n) {
   return n < 2 ? n : (fibonacci(n - 1) + fibonacci(n - 2));
 }
-Output:- fibonacci(20) = 6765
-====================================================================================================
-Example 3:- How to declare variables and print variable values.
-void main() {
-// declaring variables
-String name = "John";
-String address = "USA";  
-num age = 20; // used to store any types of numbers 
-num height = 5.9;
-bool isMarried = false;
-   
-// printing variables value   
-print("Name is $name");
-print("Address is $address");
-print("Age is $age");
-print("Height is $height");
-print("Married Status is $isMarried");
-}
+```
 
-output:- Name is John
+**Output:**
+```
+fibonacci(20) = 6765
+```
+
+---
+
+### Example 3: How to declare variables and print variable values
+
+```dart
+void main() {
+  // declaring variables
+  String name = "John";
+  String address = "USA";  
+  num age = 20; // used to store any types of numbers 
+  num height = 5.9;
+  bool isMarried = false;
+   
+  // printing variables value   
+  print("Name is \$name");
+  print("Address is \$address");
+  print("Age is \$age");
+  print("Height is \$height");
+  print("Married Status is \$isMarried");
+}
+```
+
+**Output:**
+```
+Name is John
 Address is USA
 Age is 20
 Height is 5.9
 Married Status is false
-====================================================================================================
-Operators
-=============
-Example 4- Using operators made addition, subtraction and division of two numbers.
+```
+
+---
+
+## Operators
+
+### Example 4: Using operators made addition, subtraction and division of two numbers.
+
+```dart
 void main() {
  // declaring two numbers 
  int num1=10;
@@ -106,25 +136,34 @@ void main() {
  int mod=num1%num2;       // show remainder
  
 //Printing info 
- print("The addition is $sum.");
- print("The subtraction is $diff.");
- print("The unary minus is $unaryMinus.");
- print("The multiplication is $mul.");
- print("The division is $div.");
- print("The integer division is $div2.");
- print("The modulus is $mod."); 
+ print("The addition is \$sum.");
+ print("The subtraction is \$diff.");
+ print("The unary minus is \$unaryMinus.");
+ print("The multiplication is \$mul.");
+ print("The division is \$div.");
+ print("The integer division is \$div2.");
+ print("The modulus is \$mod."); 
 }
-output:- The addition is 13.
+```
+
+**Output:**
+```
+The addition is 13.
 The subtraction is 7.
 The unary minus is -10.
 The multiplication is 30.
 The division is 3.3333333333333335.
 The integer division is 3.
 The modulus is 1.
-====================================================================================================
-Built-in-types
-=================
-Example 5-Using built in type concept used int, double, list as example code.
+```
+
+---
+
+## Built-in-types
+
+### Example 5: Using built in type concept used int, double, list as example code.
+
+```dart
 void main() {
   print('--- 1. Constructors and Static Methods as Functions ---');
 
@@ -168,7 +207,11 @@ void main() {
   print('Is "test@example.com" a valid email? ${emailRegex.hasMatch('test@example.com')}');
   print('Is "invalid-email" a valid email? ${emailRegex.hasMatch('invalid-email')}');
 }
-output:---- 1. Constructors and Static Methods as Functions ---
+```
+
+**Output:**
+```
+---- 1. Constructors and Static Methods as Functions ---
 Parsed int from "123": 123 (Type: int)
 Parsed double from "3.14": 3.14 (Type: double)
 Parsed double from "hello": null
@@ -178,8 +221,15 @@ List created from Set: [10, 20, 30] (Type: List<int>)
 Current DateTime: 2025-10-27 17:17:44.507 (Type: DateTime)
 Is "test@example.com" a valid email? true
 Is "invalid-email" a valid email? false
-====================================================================================================
-Example 6:-In collection used list concept as example
+```
+
+---
+
+## Collections
+
+### Example 6: In collection used list concept as example
+
+```dart
 void main() {
   // 1. Declaring and initializing a List
   // A List of Strings (explicit type)
@@ -245,8 +295,11 @@ void main() {
   print('\nMixed list: $mixedList');
   print('Type of first element: ${mixedList[0].runtimeType}');
 }
+```
 
-Output:-Initial fruits: [Apple, Banana, Orange]
+**Output:**
+```
+Initial fruits: [Apple, Banana, Orange]
 Initial numbers: [10, 20, 30, 40]
 Fruits after adding: [Apple, Banana, Orange, Mango, Pineapple, Grapes]
 First fruit: Apple
@@ -283,8 +336,13 @@ Is numbers list empty now? true
 
 Mixed list: [1, hello, true, 3.14]
 Type of first element: int
-======================================================================================================
-Example 7:-Sets topic example
+```
+
+---
+
+### Example 7: Sets topic example
+
+```dart
 import 'dart:collection'; // Needed for UnmodifiableSetView, though Set.unmodifiable is built-in.
 
 void main() {
@@ -400,7 +458,10 @@ void main() {
   // Uncomment the line below to see the error:
   // unmodifiableView.add('D'); // Throws UnsupportedError
 }
-Output:-
+```
+
+**Output:**
+```
 --- Demonstrating Dart Sets ---
 
 1. Initial Set of fruits: {Apple, Banana, Orange}
@@ -447,8 +508,13 @@ Output:-
    Unmodifiable view of mutableSet: {A, B}
    Mutable Set after adding 'C': {A, B, C}
    Unmodifiable view after mutableSet change: {A, B, C} (reflects 'C')
-======================================================================================================
-Example 8:-Using map collection showing example code to add, remove, update etc of keys and values.
+```
+
+---
+
+### Example 8: Using map collection showing example code to add, remove, update etc of keys and values.
+
+```dart
 void main() {
   // 1. Declaring and Initializing a Map
   // Syntax: Map<KeyType, ValueType> mapName = {key1: value1, key2: value2};
@@ -543,7 +609,11 @@ void main() {
   print('Inventory after clearing: $inventory');
   print('Is inventory empty now? ${inventory.isEmpty}');
 }
-Output:---- Initial Product Prices ---
+```
+
+**Output:**
+```
+---- Initial Product Prices ---
 {Laptop: 1200, Mouse: 25.5, Keyboard: 75, Monitor: 300}
 Number of products: 4
 
@@ -603,12 +673,17 @@ Inventory after adding items: {Apples: 10, Bananas: 15}
 Is inventory empty? false
 Inventory after clearing: {}
 Is inventory empty now? true
-=========================================================================================================
-Control Flow Statements
-==========================
-Branches: if, if-case, switch
-===============================
-Example 9:-Using if stament showing grades according to percentage.
+```
+
+---
+
+## Control Flow Statements
+
+### Branches: if, if-case, switch
+
+### Example 9: Using if stament showing grades according to percentage.
+
+```dart
 void main() {
   print("--- Grading System (using only 'if' statements) ---");
   print("This program demonstrates how to replace an 'if-else if-else' chain");
@@ -675,7 +750,11 @@ void processScore(int score) {
 
   print("Score: $score => Grade: $grade");
 }
-output:- Grading System (using only 'if' statements)
+```
+
+**Output:**
+```
+Grading System (using only 'if' statements)
 This program demonstrates how to replace an 'if-else if-else' chain
 with multiple independent 'if' statements by making each condition mutually exclusive.
 
@@ -688,9 +767,14 @@ Score: 100 => Grade: A
 Score: 0 => Grade: F
 Score: -5 => Grade: Invalid Score
 Score: 105 => Grade: Invalid Score
-====================================================================================================
-Example 10:-/// A function that checks if a given number is positive, negative, or zero using if-else condition
-/// and prints an appropriate message using an if-else if-else structure.
+```
+
+---
+
+### Example 10: A function that checks if a given number is positive, negative, or zero using if-else condition
+### and prints an appropriate message using an if-else if-else structure.
+
+```dart
 void checkNumberSign(int number) {
   if (number > 0) {
     print('$number is a positive number.');
@@ -744,7 +828,11 @@ void main() {
   checkEvenOrOdd(4);
   checkEvenOrOdd(7);
 }
-Output:---- Checking Number Signs ---
+```
+
+**Output:**
+```
+--- Checking Number Signs ---
 10 is a positive number.
 -5 is a negative number.
 0 is zero.
@@ -758,8 +846,13 @@ Age 18: Eligible to vote!
 --- Example with a simple condition (even/odd) ---
 4 is an even number.
 7 is an odd number.
-====================================================================================================
-Example 11:-// A function that uses if-else if-else to determine a student's grade
+```
+
+---
+
+### Example 11: A function that uses if-else if-else to determine a student's grade
+
+```dart
 String getGrade(int score) {
   // Validate input (optional but good practice)
   if (score < 0 || score > 100) {
@@ -819,7 +912,11 @@ void main() {
   String negativeScoreGrade = getGrade(negativeScore);
   print("A student with score $negativeScore gets a grade: $negativeScoreGrade"); // Output: Invalid Score
 }
-Output:---- Student Grade Calculator ---
+```
+
+**Output:**
+```
+--- Student Grade Calculator ---
 A student with score 95 gets a grade: A
 A student with score 82 gets a grade: B
 A student with score 70 gets a grade: C
@@ -827,8 +924,13 @@ A student with score 65 gets a grade: D
 A student with score 48 gets a grade: F
 A student with score 105 gets a grade: Invalid Score
 A student with score -5 gets a grade: Invalid Score
-====================================================================================================
-Example 12:-/// A simple function that uses a switch statement to classify a given number.
+```
+
+---
+
+### Example 12: A simple function that uses a switch statement to classify a given number.
+
+```dart
 void main() {
   var dayOfWeek = 5;
   switch (dayOfWeek) {
@@ -858,11 +960,22 @@ void main() {
       break;
   }
 }
-Output:- Day is Thursday.
-====================================================================================================
-Loops:-for, while, do-while, break, continue
-===============================================
-Example 13:-// main function where the program execution begins for loop
+```
+
+**Output:**
+```
+Day is Thursday.
+```
+
+---
+
+## Loops
+
+### for, while, do-while, break, continue
+
+### Example 13: main function where the program execution begins for loop
+
+```dart
 void main() {
   print("--- Example 1: Printing numbers using a for loop ---");
   // Call the function with an argument
@@ -897,7 +1010,11 @@ void printListElements(List<String> items) {
     print("Fruit: $item");
   }
 }
-Output:---- Example 1: Printing numbers using a for loop ---
+```
+
+**Output:**
+```
+--- Example 1: Printing numbers using a for loop ---
 Numbers from 1 to 5:
 Number: 1
 Number: 2
@@ -911,8 +1028,13 @@ Fruit: Apple
 Fruit: Banana
 Fruit: Cherry
 Fruit: Date
-=====================================================================================================
-Example 14:-Using while and do-while concept example 
+```
+
+---
+
+### Example 14: Using while and do-while concept example 
+
+```dart
 /// Main function where the program execution begins.
 void main() {
   print("Welcome to the Loop Demonstration Program!\n");
@@ -974,7 +1096,11 @@ void showSmallExample() {
   } while (runOnceDoWhile < 3); // 6 < 3 is false after the first run, so it stops.
   print("  'do-while' loop executed once as expected. runOnceDoWhile: $runOnceDoWhile");
 }
-Output:-Welcome to the Loop Demonstration Program!
+```
+
+**Output:**
+```
+Welcome to the Loop Demonstration Program!
 
 Calling the function 'showSmallExample()':
 
@@ -1000,8 +1126,13 @@ Do-While loop with an initially false condition (will run once):
   'do-while' loop executed once as expected. runOnceDoWhile: 6
 
 Loop demonstration complete.
-===============================================================================================================
-Example 15:-Using break and continue statements example 
+```
+
+---
+
+### Example 15: Using break and continue statements example 
+
+```dart
 // import 'dart:io'; // 'dart:io' is not supported by DartPad. Removed.
 
 /// Demonstrates the use of 'break' and 'continue' keywords within loops.
@@ -1069,7 +1200,11 @@ void main() {
   showBreakAndContinueExample();
   print("Program finished.");
 }
-Output:-Starting the program to show break and continue examples.
+```
+
+**Output:**
+```
+Starting the program to show break and continue examples.
 --- Demonstrating 'continue' ---
 Printing odd numbers from 1 to 10:
 1 3 5 7 9
@@ -1092,10 +1227,15 @@ First prime number found: 2
 ----------------------------------
 
 Program finished.
-==================================================================================================
-File Handling in dart
-======================
-Example 16:-using file handling in dart concept how we can read, write and delete file.
+```
+
+---
+
+## File Handling in dart
+
+### Example 16: using file handling in dart concept how we can read, write and delete file.
+
+```dart
 import 'dart:collection'; // For HashMap if needed, though a simple Map is usually fine.
 
 /// The name of the file we'll be working with.
@@ -1198,7 +1338,10 @@ Future<void> deleteFile(String path) async {
     print('❌ Error deleting (simulated) "$path": $e');
   }
 }
-Output:-
+```
+
+**Output:**
+```
 --- Dart File Handling Example (Simulated for DartPad) ---
 NOTE: Actual file system operations using dart:io are not supported in DartPad.
 This example simulates file operations using an in-memory map.
@@ -1232,7 +1375,5 @@ New start!---END---
 ⚠️ (Simulated) File "my_example_file.txt" does not exist.
 
 --- File Handling Example Completed ---
-=======================================================================================================
-
-->Here i have written 16 examples for each topic as shown in above in content.
+```
 
