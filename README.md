@@ -8,6 +8,18 @@
 4. Collections in Dart
 5. File Handling in Dart
 6.OOP in Dart
+7.Null Safety In Dart
+8.Asynchronous Programming
+9.Useful Information
+   Final Vs Const
+   Datetime In Dart
+   Extension In Dart
+   Backend in Dart
+10.Dart how to
+   Convert String to Int
+   Generate Random Number
+   Capitalize First Character
+   Make Http Request in Dart
 ---
 
 ## 1. Introduction and Basics
@@ -2121,8 +2133,735 @@ void main() {
 Hello
 ```
 ---
+## Null Safety
+Null safety is a feature in the Dart programming language that helps developers to avoid null errors. This feature is called Sound Null Safety in dart. This allows developers to catch null errors at edit time.
+Advantage Of Null Safety
+Write safe code.
+Reduce the chances of application crashes.
+Easy to find and fix bugs in code.
+---
+### Example 35:-You can use nullable variables in many ways. Some of them are shown below:
+You can use if statement to check whether the variable is null or not.
+You can use ! operator, which returns null if the variable is null.
+You can use ?? operator to assign a default value if the variable is null.
+```dart
+void main(){
+// Declaring a nullable variable by using ?
+String? name;
+// Assigning John to name
+name = "John";
+// Assigning null to name
+name = null;
+// Checking if name is null using if statement
+if(name == null){
+print("Name is null");
+}
+// Using ?? operator to assign a default value
+String name1 = name ?? "Stranger";
+print(name1);
+// Using ! operator to return null if name is null
+String name2 = name!;
+print(name2);
+}
+```
+**Output:**
+```
+Name is null
+Stranger
+Uncaught TypeError: Cannot read properties of null (reading 'toString')Error: TypeError: Cannot read properties of null (reading 'toString')
+```
+---
+### Example 36:-Working With Nullable Class Properties
+In the example below, the Profile class has two nullable properties: name and bio. The printProfile method prints the name and bio of the profile. If the name or bio is null, it prints a default value instead.
+```dart
+class Profile {
+  String? name;
+  String? bio;
+
+  Profile(this.name, this.bio);
+
+  void printProfile() {
+    print("Name: ${name ?? "Unknown"}");
+    print("Bio: ${bio ?? "None provided"}");
+  }
+}
+
+void main() {
+  // Create a profile with a name and bio
+  Profile profile1 = Profile("John", "Software engineer and avid reader");
+  profile1.printProfile();
+
+  // Create a profile with only a name
+  Profile profile2 = Profile("Jane", null);
+  profile2.printProfile();
+
+  // Create a profile with only a bio
+  Profile profile3 = Profile(null, "Loves to travel and try new foods");
+  profile3.printProfile();
+
+  // Create a profile with no name or bio
+  Profile profile4 = Profile(null, null);
+  profile4.printProfile();
+}
+```
+**Output:**
+```
+Name: John
+Bio: Software engineer and avid reader
+Name: Jane
+Bio: None provided
+Name: Unknown
+Bio: Loves to travel and try new foods
+Name: Unknown
+Bio: None provided
+```
+---
+## Type Promotion In Dart
+Type promotion in dart means that dart automatically converts a value of one type to another type. Dart does this when it knows that the value is of a specific type.
+---
+### Example 37:-Type Promotion With Nullable Type To Non-Nullable Type
+In this example, the variable value contains a value of type String or null. The variable value is promoted to a non-nullable type String in the if block. If the variable value is null, then the else block is executed.
+```dart
+// importing dart:math library
+import 'dart:math';
+// creating a class DataProvider
+class DataProvider{
+    // creating a method stringorNull
+    String? get stringorNull => Random().nextBool() ? "Hello" : null;
+
+    // creating a method myMethod
+    void myMethod(){
+        String? value = stringorNull;
+        // checking if value String or not
+        if(value is String){
+            print("The length of value is ${value.length}");
+        }else{
+            print("The value is not string.");
+        }
+
+    }
+}
+// main method
+void main() {
+    DataProvider().myMethod();
+}
+```
+**Output:**
+```
+The length of value is 5
+```
+---
+## Late Keyword In Dart
+In dart, late keyword is used to declare a variable or field that will be initialized at a later time. It is used to declare a non-nullable variable that is not initialized at the time of declaration.
+---
+### Example 38:-In this example, there is Person class with a name field. The name field is declared as a late variable.
+```dart
+class Person {
+  // late variable
+  late String name;
+
+  void greet() {
+    print("Hello $name");
+  }
+}
+
+void main() {
+  Person person = Person();
+  // late variable is initialized here
+  person.name = "John";
+  person.greet();
+}
+```
+**Output:**
+```
+Hello John
+```
+---
+## What Is Lazy Initialization
+Lazy initialization is a design pattern that delays the creation of an object, the calculation of a value, or some other expensive process until the first time you need it.
+---
+### Example 39:-In this example, the provideCountry function is not called when the value variable is declared. The provideCountry function is called only when the value variable is used. Lazy initialization is used to avoid unnecessary computation.
+```dart
+// function
+String provideCountry() {
+  print("Function is called");
+  return "USA";
+}
+
+void main() {
+  print("Starting");
+  // late variable
+  late String value = provideCountry();
+  print("End");
+  print(value);
+}
+```
+**Output:**
+```
+Starting
+End
+Function is called
+USA
+```
+---
+### Example 40:-Late Keyword In Class
+In this example, the heavyComputation function is called when the description variable is used. If you remove the late keyword from the description variable, the heavyComputation function will be called when the Person class is instantiated.
+```dart
+// Person class
+class Person {
+  final int age;
+  final String name;
+  late String description = heavyComputation();
+
+// constructor
+  Person(this.age, this.name) {
+    print("Constructor is called");
+  }
+// method
+  String heavyComputation() {
+    print("heavyComputation is called");
+    return "Heavy Computation";
+  }
+}
+
+void main() {
+  // object of Person class
+  Person person = Person(10, "John");
+  print(person.name);
+  print(person.description); 
+}
+```
+**Output:**
+```
+Constructor is called
+John
+heavyComputation is called
+Heavy Computation
+```
+---
+### Example 41:-Late Final Keyword In Dart
+In this example, there is class Student with a name field. The name field is declared as a late final variable. The name field is initialized in the Student constructor. The name field is assigned a value only once. If you try to assign a value to the name field again, you will get an error.
+```dart
+// Student class
+class Student {
+  // late final variable
+  late final String name;
+
+  // constructor
+  Student(this.name);
+}
+
+void main() {
+  // object of Student class
+  Student student = Student("John");
+  print(student.name);
+  student.name = "Doe"; // Error
+}
+```
+**Output:**
+```
+John
+Unhandled exception:
+LateInitializationError: Field 'name' has already been initialized.
+```
+---
+## Asynchronous Programming In Dart
+Asynchronous Programming is a way of writing code that allows a program to do multiple tasks at the same time. Time consuming operations like fetching data from the internet, writing to a database, reading from a file, and downloading a file can be performed without blocking the main thread of execution.
+In Asynchronous programming, program execution continues to the next line without waiting to complete other work. It simply means, Don’t wait. It represents the task that doesn’t need to solve before proceeding to the next one.
+---
+### Example 42:-In this example, you can see that it will print Second Big Operation at last. It is taking 3 seconds to load and Third Operation and Last Operation don’t need to wait for 3 seconds. This is the problem solved by Asynchronous Programming. A Future represents a value that is not yet available, you will learn about Future in the next section.
+```dart
+void main() {
+  print("First Operation");   
+  Future.delayed(Duration(seconds:3),()=>print('Second Big Operation'));
+  print("Third Operation"); 
+  print("Last Operation"); 
+}
+```
+**Output:**
+```
+First Operation
+Third Operation
+Last Operation
+Second Big Operation
+```
+---
+## Future In Dart
+In dart, the Future represents a value or error that is not yet available. It is used to represent a potential value, or error, that will be available at some time in the future.
+---
+### Example 43:-You can use future in dart by using then() method. Here the function will return Future<String> after 5 seconds.
+```dart
+// function that returns a future
+Future<String> getUserName() async {
+  return Future.delayed(Duration(seconds: 2), () => 'Mark');
+}
+
+// main function
+void main() {
+  print("Start");
+  getUserName().then((value) => print(value));
+  print("End");
+}
+```
+**Output:**
+```
+Start
+End
+Mark
+```
+---
+### Example 44:-In this example below, we are creating a function middleFunction() that returns a future. The function will return Future<String> after 5 seconds.
+Note: In this example, First, it prints Start, secondly it prints End, and after 5 seconds Hello will be printed.
+```dart
+void main() {
+  print("Start");
+  getData();
+  print("End");
+}
+
+void getData() async{
+  String data = await middleFunction();
+  print(data);
+}
+
+Future<String> middleFunction(){
+  return Future.delayed(Duration(seconds:5), ()=> "Hello");
+}
+```
+**Output:**
+```
+Start
+End
+Hello
+```
+---
+## Async And Await In Dart
+Async/await is a feature in Dart that allows us to write asynchronous code that looks and behaves like synchronous code, making it easier to read.
+
+When a function is marked async, it signifies that it will carry out some work that could take some time and will return a Future object that wraps the result of that work.
+
+The await keyword, on the other hand, allows you to delay the execution of an async function until the awaited Future has finished. This enables us to create code that appears to be synchronous but is actually asynchronous.
+
+The async and await keywords both provide a declarative way to define an asynchronous function and use their results. You can use the async keyword before a function body to make it asynchronous. You can use the await keyword to get the completed result of an asynchronous expression.
+---
+### Example 45:-In this example, async handles the states of the program where any part of the program can be executed.async always comes with await because await holds the part of the program until the rest of the program executed.
+```dart
+void main() {
+  print("Start");
+  getData();
+  print("End");
+}
+
+void getData() async{
+  String data = await middleFunction();
+  print(data);
+}
+
+Future<String> middleFunction(){
+  return Future.delayed(Duration(seconds:5), ()=> "Hello");
+}
+```
+**Output:**
+```
+Start
+End
+Hello
+```
+---
+## Handling Errors
+You can handle errors in the dart async function by using try-catch. You can write try-catch code the same way you write synchronous code.
+---
+### Example 46:-In this example, try-catch handles the exception that could come after the program is executed.
+```dart
+main() {
+  print("Start");
+  getData();
+  print("End");
+}
 
 
+void getData() async{
+    try{
+        String data = await middleFunction();
+        print(data);
+    }catch(err){
+        print("Some error $err");
+    }
+ 
+}
 
+Future<String> middleFunction(){
+  return Future.delayed(Duration(seconds:5), ()=> "Hello");
+}
+```
+**Output:**
+```
+Start
+End
+Hello
+```
+---
+## Streams In Dart
+A stream is a sequence of asynchronous events representing multiple values that will arrive in the future. Stream class deals with sequences of events instead of single events. Stream has one or more listeners, and all listeners will receive the same value.
+---
+### Example 47:-You can use stream in dart by using await for loop.
+```dart
+// function that returns a stream
+Stream<String> getUserName() async* {
+  await Future.delayed(Duration(seconds: 1));
+  yield 'Mark';
+  await Future.delayed(Duration(seconds: 1));
+  yield 'John';
+  await Future.delayed(Duration(seconds: 1));
+  yield 'Smith';
+}
 
+// main function
+void main() async {
+  // you can use await for loop to get the value from stream
+  await for (String name in getUserName()) {
+    print(name);
+  }
+}
+```
+**Output:**
+```
+Mark
+John
+Smith
+```
+---
+### Example 48:-Example Of async
+```dart
+Future<int> doSomeLongTask() async {
+  await Future.delayed(const Duration(seconds: 2));
+  return 21;
+}main() async {
+  int result = await doSomeLongTask();
+  print(result); // prints '42' after waiting 2 second
+}
+```
+**Output:**
+```
+21
+```
+---
+### Example 49:-Example Of async In Dart*
+```dart
+Stream<int> countForOneMinute() async* {
+  for (int i = 1; i <= 5; i++) {
+    await Future.delayed(const Duration(seconds: 1));
+    yield i;
+  }
+} main() async {
+  await for (int i in countForOneMinute()) {
+    print(i); // prints 1 to 5, one integer per second
+  }
+}
+```
+**OUTPUT:**
+```
+1
+2
+3
+4
+5
+```
+---
+### Example 50:-Example Of yield In Dart*
+In this example, you have printed only an even number from 10 to 2 using stream. It will print the number after 2 sec.
+```dart
+Stream<int> str(int n) async* {
+ if (n > 0) {  
+   await Future.delayed(Duration(seconds: 2));
+   yield n;
+   yield* str(n - 2);
+ }
+}
+
+void main() {
+ str(10).forEach(print);
+}
+```
+**Output:**
+```
+10
+8
+6
+4
+2
+```
+---
+## Final Vs Const In Dart
+If you do not want to change the value of a variable, then you can use either final or const in dart.
+---
+### Example 51:-
+```dart
+void main() {
+  final finalName = "Final John Doe";
+  const constName = "Const John Doe";
+
+  finalName = "Raj"; // Not Possible
+  constName = "Anu"; // Not Possible
+
+  print("Final name is " + finalName);
+  print("Const name is " + constName);
+}
+```
+**Output:**
+```
+main.dart:5:3: Error: Can't assign to the final variable 'finalName'.
+  finalName = "Raj"; // Not Possible
+  ^^^^^^^^^
+main.dart:6:3: Error: Can't assign to the const variable 'constName'.
+  constName = "Anu"; // Not Possible
+```
+---
+## Const In Dart
+If you need to calculate value at compile-time, it is a good idea to choose const over
+final. A const variable is a compile-time constant. They must be created from data that
+can be calculated at compile time. 100+1 is valid const expression but const date
+DateTime.now(); is not.
+
+What Is Compile Time
+When you run code in the dart, it will be compiled into the format that the machine can 
+understand. This time is called compile time. Const value should be known at compile time.
+
+What Is Run Time
+Runtime is the time when your compiled code is started running. It generally occurs after the compile time.
+Example:- const total = 50+50; // Possible
+          const date = DateTime.now(); // Not Possible
+## Final In Dart
+If the value is calculated at runtime, you can choose final for it. For. e.g if you want to calculate date on run time, you can use final date = DateTime.now(); but not const date = DateTime.now();.
+final date = DateTime.now(); // Possible
+const date = DateTime.now(); // Not Possible
+---
+## DateTime In Dart
+Date and time are often used in our day-to-day activities. As a programmer you need to know how to find a date and time? How to format date? and how to perform different calculation in date?
+How To Get Date And Time
+Use the following code to get the current date and time in the dart.
+void main() {
+  print(DateTime.now());
+}
+---
+## Get Year, Month, Day Of Datetime In Dart
+---
+### Example 52:-Here is the way to get a year, month, day, hour, minutes, and seconds in Dart. You can convert DateTime to String by using the toString() method.
+```dart
+void main() {
+  DateTime datetime = DateTime.now();
+  print("Year is " + datetime.year.toString());
+  print("Month is " + datetime.month.toString());
+  print("Day is ${datetime.day}"); // If you don't want to use .toString
+  print("Hour is " + datetime.hour.toString());
+  print("Minutes is " + datetime.minute.toString());
+  print("Second is " + datetime.second.toString());
+}
+```
+**Output:**
+```
+Year is 2025
+Month is 10
+Day is 31
+Hour is 15
+Minutes is 36
+Second is 7
+```
+---
+## How To Convert Datetime To String In Dart
+---
+### Example 53:-Use the following code to convert DateTime to String in the dart.
+```dart
+void main() {
+  String datetime = DateTime.now().toString();
+  print(datetime);
+}
+```
+**Output:**
+```
+2025-10-31 15:39:29.422
+```
+---
+## How To Convert String To DateTime
+---
+### Example 54:-You cannot get year, months, or day directly and cannot perform date calculation using a String if that String contains the correct DateTime value. In such a situation, you first need to convert String to DateTime.
+```dart
+void main() {
+  String myDateInString = "2022-05-01";
+  DateTime myConvertedDate = DateTime.parse(myDateInString);
+  print("Year is " + myConvertedDate.year.toString());
+  print("Month is " + myConvertedDate.month.toString());
+  print("Day is " + myConvertedDate.day.toString());
+}
+```
+**Output:**
+```
+Year is 2022
+Month is 5
+Day is 1
+
+```
+---
+## Methods Supported By Datetime In Dart
+You can use DateTime methods if you want to add days, hours, or minutes to DateTime. Let us suppose you have created a DateTime object named mybirthday. DateTime mybirthday = DateTime.parse("1997-05-14");
+
+Method	                                  Example
+add(Duration)	              myBirthday.add(Duration(days: 1));
+subtract(Duration)	        myBirthday.subtract(Duration(days: 1));
+
+Note: You can set a duration to days, hours, minutes, seconds, milliseconds, and microseconds. To understand it more, look at the example below.
+---
+### Example 55:-Add Date In Dart
+```dart
+void main() {
+  DateTime myBirthday = DateTime.parse("1997-05-14");
+  myBirthday = myBirthday.add(Duration(days: 1));
+  print("Year is " + myBirthday.year.toString());
+  print("Month is " + myBirthday.month.toString());
+  print("Day is " + myBirthday.day.toString());
+}
+```
+**Output:**
+```
+Year is 1997
+Month is 5
+Day is 15
+```
+---
+### Example 56:-Subtract Date In Dart
+```dart
+void main() {
+  DateTime myBirthday = DateTime.parse("1997-05-14");
+  myBirthday = myBirthday.subtract(Duration(days: 1));
+  print("Year is " + myBirthday.year.toString());
+  print("Month is " + myBirthday.month.toString());
+  print("Day is " + myBirthday.day.toString());
+} 
+```
+**Output:**
+```
+Year is 1997
+Month is 5
+Day is 13
+```
+---
+## DateTime Comparision Methods
+---
+### Example 57:-If you want to compare two dates, then you can use comparison methods.
+Method Name	                                    Description
+IsAfter(DateTime)	                     Returns true or false. bool
+IsBefore(DateTime)	                   Returns true or false. bool
+IsAtTheSameMoment(DateTime)	           Returns true or false. bool
+```dart
+void main() {
+  DateTime myBirthday = DateTime.parse("1997-05-14");
+  DateTime today = DateTime.now();
+
+  if (myBirthday.isBefore(today)) {
+    print("My Birthday is before today.");
+  } else if (myBirthday.isAfter(today)) {
+    print("My Birthday is after today.");
+  } else if (myBirthday.isAtSameMomentAs(today)) {
+    print("My Birthday date and today's date is same.");
+  }
+}
+```
+**Output:**
+```
+My Birthday is before today.
+```
+---
+## Dart Extension Method
+In Dart, you can extend the functionality of a class by using extension. It is a new feature in Dart 2.7.0. It is similar to extension methods in C# and Kotlin. It is also similar to the concept of mixins in Dart.
+---
+### Example 58:-How To Use Extension In Dart
+Here we are extending the functionality of String class. We are adding a new method capitalize to the String class. We are using extension keyword to extend the functionality of String class.
+```dart
+void main(){
+  String name = "john";
+  print(name.capitalize());
+}
+
+extension StringExtension on String{
+  String capitalize(){
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+```
+**Output:-**
+```
+John
+```
+---
+## Dart how to 
+Convert String To Int In Dart
+The String is the textual representation of data, whereas int is a numeric representation without a decimal point. While coding in must of the case, you need to convert data from one type to another type. In dart, you can convert String to int by using the int.parse() method.
+int.parse("String");
+You can replace String with any numeric value and convert String to int. Make sure you have numeric value there. To know more see the example below.
+---
+### Example 59:-This program converts String to int. You can view type of variable with .runtimeType.
+```dart
+void main(){
+String value = "10";
+int numericValue = int.parse(value);
+print("Type of value is ${value.runtimeType}");
+print("Type of numeric value is ${numericValue.runtimeType}");
+}
+```
+**Output:**
+```
+Type of value is String
+Type of numeric value is int
+```
+---
+## With Try Catch
+---
+### Example 60:-This program throws an exception because you can’t convert “hello” to int. In this situation, you can use the try-catch exception to display your custom message.
+```dart
+void main(){
+try {
+String value = "hello";
+int numericValue = int.parse(value);
+print("Type of numeric value is ${numericValue.runtimeType}");
+
+  }
+catch(ex){
+print("Something went wrong.");
+}
+
+}
+```
+**Output:**
+```
+Something went wrong.
+```
+---
+## Generate Random Number In Dart
+This tutorial will teach you how to generate random numbers in dart programming. You will learn to generate random numbers between a range, and also generate a list of random numbers.
+Why You Need To Generate Random Number
+Random Number Game: You can use random numbers to create a random number game.
+Card Game: You can use random numbers to shuffle the cards.
+---
+### Example 61:-Generate Random Number In Dart
+This example shows how to generate random numbers from 0 - 9 and also 1 to 10. After watching this example, you can generate a random number between your choices.
+In this program, random.nextInt(10) function is used to generate a random number between 0 and 9 in which the value is stored in a variable randomNumber.
+The random.nextInt(10)+1 function is used to generate random number between 1 to 10 in which the value is stored in a variable randomNumber2.
+```dart
+import 'dart:math';
+void main()
+{
+Random random = new Random();
+int randomNumber = random.nextInt(10); // from 0 to 9 included
+print("Generated Random Number Between 0 to 9: $randomNumber");
+  
+int randomNumber2 = random.nextInt(10)+1; // from 1 to 10 included  
+print("Generated Random Number Between 1 to 10: $randomNumber2"); 
+}
+```
+**Output:**
+```
+Generated Random Number Between 0 to 9: 8
+Generated Random Number Between 1 to 10: 8
+```
+---
 
