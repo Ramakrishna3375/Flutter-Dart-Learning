@@ -2864,4 +2864,150 @@ Generated Random Number Between 0 to 9: 8
 Generated Random Number Between 1 to 10: 8
 ```
 ---
+## How To Capitalize First Letter Of String In Dart
+---
+### Example 62:-If you want to capitalize the first letter of a String in Dart, you can use the following code:
+```dart
+void main() { 
+  String text = "hello world"; 
+  print("Capitalized first letter of String: ${text[0].toUpperCase()}${text.substring(1)}"); 
+}
+```
+**Output:**
+```
+Capitalized first letter of String: Hello world
+```
+---
+### Example 63:-To Capitalize First Letter Of String Using Extension Method
+In this example, we will use the extension method to capitalize the first letter of a String. You can learn more about extension method here.
+```dart
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
+}
+
+void main() {
+  String text = "hello world";
+  print("Capitalized first letter of String: ${text.capitalize()}");
+}
+```
+**Output:**
+```
+Capitalized first letter of String: Hello world
+```
+---
+## Make Http Request in Dart
+Introduction
+HTTP request means sending a request to a server and getting a response from the server. In this tutorial, we will learn how to make http request in dart with examples.
+---
+### Example 64:-Make HTTP Get Request
+When you want to get data from the server, you need to make a get request. To make HTTP get request in dart, you can use get() method on the http client instance.
+Note: If the status code is 200, it means the request is successful and you can get the response body otherwise the request is failed and you can get error message.
+```dart
+// import http package
+import 'package:http/http.dart' as http;
+void main() async {
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+  // make http get request
+  var response = await http.get(url);
+  // check the status code for the result  
+  if (response.statusCode == 200) {
+    print(response.body);
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+  }  
+
+}
+```
+**Output:**
+```
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+```
+---
+### Example 65:-Make HTTP Post Request
+When you want to send data to the server, you need to make a post request. To make HTTP post request in dart, you can use post() method on the http client instance.
+```dart
+// import http package
+import 'package:http/http.dart' as http;
+void main() async {
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/posts');
+  // make http post request
+  var response = await http.post(url, body: {'title': 'foo', 'body': 'bar', 'userId': '1'});
+  // check the status code for the result  
+  if (response.statusCode == 201) {
+    print(response.body);
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+  }  
+}
+```
+**Output:**
+```
+{
+  "title": "foo",
+  "body": "bar",
+  "userId": "1",
+  "id": 101
+}
+```
+---
+### Example 66:-Make HTTP Patch Request
+When you want to update a part of data on the server, you need to make a patch request. To make HTTP patch request in dart, you can use patch() method on the http client instance.
+```dart
+// import http package
+import 'package:http/http.dart' as http;
+
+void main() async {
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+  // make http patch request
+  var response = await http.patch(url, body: {'title': 'Ramki'});
+  // check the status code for the result  
+  if (response.statusCode == 200) {
+    print(response.body);
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+  }  
+
+}
+```
+**Output:**
+```
+{
+  "userId": 1,
+  "id": 1,
+  "title": "Ramki",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+```
+---
+### Example 67:-Make HTTP Delete Request
+When you want to delete data from the server, you need to make a delete request. To make HTTP delete request in dart, you can use delete() method on the http client instance.
+```dart
+// import http package
+import 'package:http/http.dart' as http;
+
+void main() async {
+  var url = Uri.parse('https://jsonplaceholder.typicode.com/posts/1');
+  // make http delete request
+  var response = await http.delete(url);
+  // check the status code for the result  
+  if (response.statusCode == 200) {
+    print(response.body);
+  } else {
+    print('Request failed with status: ${response.statusCode}.');
+  }  
+
+}
+```
+**Output:**
+```
+{}
+```
+---
 
